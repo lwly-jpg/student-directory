@@ -30,9 +30,12 @@ def process(menu_input)
       show_students
     when "3"
       save_students
+      puts "Student list saved"
     when "4"
       load_students
+      puts "Student list loaded"
     when "9"
+      puts "Exiting..."
       exit
     else
       puts "Invalid input. Please enter a number."
@@ -42,14 +45,10 @@ end
 def input_students
   puts "Enter the names of the students"
   puts "Hit return twice to finish"
-  # Get first student name
   name = STDIN.gets.chomp
-  # While name is not empty, repeat code
   while !name.empty? do
-    # Add student hash to array
     add_students(name, cohort = :october)
     puts "We now have #{@students.count} students"
-    # Get another student name
     name = STDIN.gets.chomp
   end
 end
