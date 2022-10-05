@@ -1,3 +1,30 @@
+def interactive_menu
+  students = []
+  loop do
+    # 1. print the menu and ask the user what to do
+    puts "What would you like to do?"
+    puts "1. Input students"
+    puts "2. Show students"
+    puts "9. Exit"
+    # 2. read the input and save it into a variable
+    menu_input = gets.chomp
+    # 3. do what the user has asked
+    case menu_input
+      when "1"
+        students = input_students
+      when "2"
+        print_header
+        print(students)
+        print_footer(students)
+      when "9"
+        exit
+      else
+        puts "Invalid input. Please enter a number."
+    end
+    # 4. repeat from step 1
+  end
+end
+
 def input_students
   puts "Enter the names of the students"
   puts "Hit return twice to finish"
@@ -23,8 +50,8 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  students.each_with_index do |student, index|
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
@@ -32,7 +59,4 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
-students = input_students
-print_header
-print(students)
-print_footer(students)
+interactive_menu
