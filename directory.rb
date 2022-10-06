@@ -32,8 +32,10 @@ def process(menu_input)
       save_students
       puts "Student list saved"
     when "4"
-      load_students
-      puts "Student list loaded"
+      puts "Enter a filename:"
+      filename = gets.chomp
+      load_students(filename)
+      puts "Student list #{filename} loaded"
     when "9"
       puts "Exiting..."
       exit
