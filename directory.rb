@@ -29,10 +29,12 @@ def process(menu_input)
     when "2"
       show_students
     when "3"
-      save_students
+      puts "Enter a filename to save as:"
+      filename = gets.chomp
+      save_students(filename)
       puts "Student list saved"
     when "4"
-      puts "Enter a filename:"
+      puts "Enter a filename to load:"
       filename = gets.chomp
       load_students(filename)
       puts "Student list #{filename} loaded"
@@ -74,8 +76,8 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-def save_students
-  file = File.open("students.csv", "w")
+def save_students(filename = "students.csv")
+  file = File.open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
